@@ -28,6 +28,8 @@ Thumbs.db
 
 # Logs
 *.log
+# OpenUP agent run logs (runtime artifacts)
+docs/agent-logs/
 
 # Claude Code
 /.claude
