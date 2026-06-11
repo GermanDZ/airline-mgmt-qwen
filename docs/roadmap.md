@@ -31,11 +31,11 @@
 **Iteration**: 0 (inception)
 
 ## T-006: Create Initial Project Plan
-**Status**: in-progress
+**Status**: completed
 **Priority**: high
-**Description**: Synthesize all inception/elaboration deliverables into actionable project plan with work items (5 sprints), estimates (~126 story points), timeline (~14 weeks), risk mitigation plan, resource requirements, and Construction phase prep. Deliverable: 11-section comprehensive plan covering MVP scope, technical architecture summary, sprint-by-sprint breakdown, milestones, dependencies, open issues, assumptions, and constraints.
+**Description**: Comprehensive construction plan with 5 sprints, ~126 story points, 14-week timeline. Key dependency: SME engagement for regulation engine (Sprint 2) before construction starts.
 **Iteration**: 2 (planning)
-**Branch**: planning/T-006
+**PR**: [#1](https://github.com/GermanDZ/airline-mgmt-qwen/pull/1)
 
 ## Inception Summary (Iteration 0)
 - Vision document: complete (docs/vision.md)
