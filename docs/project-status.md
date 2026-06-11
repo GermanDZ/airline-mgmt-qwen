@@ -2,10 +2,10 @@
 
 **Project**: Airline Management
 **Phase**: elaboration
-**Iteration**: 1
-**Iteration Goal**: Architecture baseline and technical feasibility assessment for MVP scope
+**Iteration**: 2 (planning)
+**Iteration Goal**: Create Initial Project Plan — synthesize all inception and elaboration deliverables into actionable plan with work items, estimates, schedule, and Construction phase prep
 **Status**: in-progress
-**Current Task**: T-004 — Assess Technical Feasibility
+**Current Task**: T-006 — Create Initial Project Plan
 **Started**: 2026-06-11
 **Last Updated**: 2026-06-11
 **Updated By**: openup-start-iteration
@@ -15,23 +15,25 @@
 |---|---|---|
 | T-001 | Initialize OpenUP Project Structure | `62d0683` |
 | T-002 | Define Project Vision | `6fcfdd4` |
-| T-003 | Identify Key Use Cases | `6fcfdd4` |
-| T-005 | Document Risks and Mitigations | `6fcfdd4` |
+| T-003 | Identify Key Use Cases (20 catalogued, 2 detailed MVP) | `6fcfdd4` |
+| T-005 | Document Risks and Mitigations (8 risks) | `6fcfdd4` |
 
 ## Completed Work Items (Iteration 1 — Elaboration)
 | Task | Description | Commits |
 |---|---|---|
-| T-004 | Assess Technical Feasibility | `cadd22c` |
+| T-004 | Assess Technical Feasibility (architecture + 6 ADRs) | `cadd22c` |
+
+## Completed Work Items (Iteration 2 — Planning)
+*(In progress)*
 
 ## Pending Tasks
 | Task | Description | Depends On | Iteration |
 |---|---|---|---|
-| T-006 | Create Initial Project Plan | T-004 | Pending |
+| T-006 | Create Initial Project Plan | — | Iteration 2 (active) |
 
-**Note**: T-004 work ended up on master due to shell cwd reset after worktree creation (see process-feedback.md, Issue #4). The elaboration/T-004 branch was not used for the final commit.
+**Note**: T-004 work ended up on master due to shell cwd reset after worktree creation (see process-feedback.md, Issue #4). Planning artifacts are on planning/T-006 branch.
 
-## Gate Status (Iteration 0 — Pre-Formal)
-> No formal iteration was started; `check-gates` cannot run (`scripts/openup-state.py` not deployed).
-> Next iteration will use full OpenUP infrastructure.
-> See `docs/traceability.md` for full commit-level traceability.
-
+## Active Team
+- **Team**: PM lead (planning — no specialist team deployed; standard track)
+- **Branch**: planning/T-006
+- **Worktree**: `../airline-mgmt-T-006`

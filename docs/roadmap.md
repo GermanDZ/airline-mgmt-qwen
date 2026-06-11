@@ -4,34 +4,38 @@
 **Status**: completed
 **Priority**: high
 **Description**: Initial project setup and documentation structure
+**Iteration**: 0 (inception)
 
 ## T-002: Define Project Vision
 **Status**: completed
 **Priority**: high
 **Description**: Created vision document defining scope, stakeholders, and business case for Airline Management system
+**Iteration**: 0 (inception)
 
 ## T-003: Identify Key Use Cases
 **Status**: completed
 **Priority**: high
 **Description**: 20 use cases catalogued across 6 functional areas; 2 detailed (MVP): UC-FO-01 Flight Plan, UC-CM-01 Crew Roster
+**Iteration**: 0 (inception)
 
 ## T-004: Assess Technical Feasibility
 **Status**: completed
 **Priority**: medium
-**Description**: Architecture baseline, domain model, regulation engine approach, tech stack decisions for MVP scope
+**Description**: Architecture baseline, domain model, regulation engine approach, tech stack decisions for MVP scope. 6 ADRs created covering tech stack, data model, regulation engine, real-time updates, audit logging, event backbone.
 **Iteration**: 1 (elaboration)
-**Branch**: elaboration/T-004
-**Commits**: cadd22c, 7b069fb
 
 ## T-005: Document Risks and Mitigations
 **Status**: completed
 **Priority**: high
 **Description**: Created risk list with 8 identified risks; 2 critical (regulatory compliance, scope creep), 4 high
+**Iteration**: 0 (inception)
 
 ## T-006: Create Initial Project Plan
-**Status**: pending
-**Priority**: medium
-**Description**: Build project plan with work items, estimates, and schedule — to begin after T-004 completes
+**Status**: in-progress
+**Priority**: high
+**Description**: Synthesize all inception/elaboration deliverables into actionable project plan with work items (5 sprints), estimates (~126 story points), timeline (~14 weeks), risk mitigation plan, resource requirements, and Construction phase prep. Deliverable: 11-section comprehensive plan covering MVP scope, technical architecture summary, sprint-by-sprint breakdown, milestones, dependencies, open issues, assumptions, and constraints.
+**Iteration**: 2 (planning)
+**Branch**: planning/T-006
 
 ## Inception Summary (Iteration 0)
 - Vision document: complete (docs/vision.md)
@@ -39,8 +43,13 @@
 - Use cases: 20 catalogued, 2 detailed for MVP
 - MVP scope: Flight Ops + Crew Mgmt + Dashboard + Admin (6 P0 use cases)
 
-## Elaboration Summary (Iteration 1 — In Progress)
-- Task: T-004 Technical Feasibility Assessment
-- Team deployed: architect + developer (openup-elaboration-team-1)
-- Branch: elaboration/T-004
-- Focus: System architecture, domain model, regulation engine, tech stack, GDS integration spike
+## Elaboration Summary (Iteration 1)
+- Task: T-004 Technical Feasibility Assessment — completed
+- Architecture: 5 bounded contexts, 6 ADRs
+- Tech stack confirmed: Python/FastAPI + React/TS + PostgreSQL + Redis + AWS ECS
+- Risks assessed: R1 (FEASIBLE with SME), R2 (MANAGEABLE)
+
+## Planning Summary (Iteration 2 — In Progress)
+- Task: T-006 Initial Project Plan
+- Deliverable: Comprehensive construction plan with 5 sprints, ~126 story points, 14-week timeline
+- Key dependency: SME engagement required before Sprint 2 (regulation engine)
