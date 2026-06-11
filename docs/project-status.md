@@ -19,18 +19,16 @@
 | T-005 | Document Risks and Mitigations | `6fcfdd4` |
 
 ## Completed Work Items (Iteration 1 — Elaboration)
-*(In progress — architect + developer team deployed)*
+| Task | Description | Commits |
+|---|---|---|
+| T-004 | Assess Technical Feasibility | `cadd22c` |
 
 ## Pending Tasks
 | Task | Description | Depends On | Iteration |
 |---|---|---|---|
-| T-004 | Assess Technical Feasibility | — | Iteration 1 (active) |
 | T-006 | Create Initial Project Plan | T-004 | Pending |
 
-## Active Team
-- **Team**: openup-elaboration-team-1 (architect + developer)
-- **Branch**: elaboration/T-004
-- **Worktree**: `../airline-mgmt-T-004`
+**Note**: T-004 work ended up on master due to shell cwd reset after worktree creation (see process-feedback.md, Issue #4). The elaboration/T-004 branch was not used for the final commit.
 
 ## Gate Status (Iteration 0 — Pre-Formal)
 > No formal iteration was started; `check-gates` cannot run (`scripts/openup-state.py` not deployed).

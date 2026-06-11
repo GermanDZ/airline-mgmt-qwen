@@ -16,12 +16,12 @@
 **Description**: 20 use cases catalogued across 6 functional areas; 2 detailed (MVP): UC-FO-01 Flight Plan, UC-CM-01 Crew Roster
 
 ## T-004: Assess Technical Feasibility
-**Status**: in-progress
+**Status**: completed
 **Priority**: medium
 **Description**: Architecture baseline, domain model, regulation engine approach, tech stack decisions for MVP scope
 **Iteration**: 1 (elaboration)
 **Branch**: elaboration/T-004
-**Team**: openup-elaboration-team-1 (architect + developer)
+**Commits**: cadd22c, 7b069fb
 
 ## T-005: Document Risks and Mitigations
 **Status**: completed
