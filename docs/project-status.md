@@ -1,14 +1,14 @@
 # Project Status
 
 **Project**: Airline Management
-**Phase**: inception
-**Iteration**: 0
-**Iteration Goal**: Project initialization
-**Status**: initialized
-**Current Task**: None (Inception complete)
+**Phase**: elaboration
+**Iteration**: 1
+**Iteration Goal**: Architecture baseline and technical feasibility assessment for MVP scope
+**Status**: in-progress
+**Current Task**: T-004 — Assess Technical Feasibility
 **Started**: 2026-06-11
 **Last Updated**: 2026-06-11
-**Updated By**: openup-complete-task
+**Updated By**: openup-start-iteration
 
 ## Completed Work Items (Iteration 0 — Inception)
 | Task | Description | Commits |
@@ -18,13 +18,19 @@
 | T-003 | Identify Key Use Cases | `6fcfdd4` |
 | T-005 | Document Risks and Mitigations | `6fcfdd4` |
 
-## Pending Tasks
-| Task | Description | Depends On |
-|---|---|---|
-| T-004 | Assess Technical Feasibility | — |
-| T-006 | Create Initial Project Plan | T-004 |
+## Completed Work Items (Iteration 1 — Elaboration)
+*(In progress — architect + developer team deployed)*
 
-**Recommendation**: Start a formal `/openup-start-iteration` for Elaboration to begin T-004 (architecture) with proper tracking.
+## Pending Tasks
+| Task | Description | Depends On | Iteration |
+|---|---|---|---|
+| T-004 | Assess Technical Feasibility | — | Iteration 1 (active) |
+| T-006 | Create Initial Project Plan | T-004 | Pending |
+
+## Active Team
+- **Team**: openup-elaboration-team-1 (architect + developer)
+- **Branch**: elaboration/T-004
+- **Worktree**: `../airline-mgmt-T-004`
 
 ## Gate Status (Iteration 0 — Pre-Formal)
 > No formal iteration was started; `check-gates` cannot run (`scripts/openup-state.py` not deployed).

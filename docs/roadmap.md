@@ -16,9 +16,12 @@
 **Description**: 20 use cases catalogued across 6 functional areas; 2 detailed (MVP): UC-FO-01 Flight Plan, UC-CM-01 Crew Roster
 
 ## T-004: Assess Technical Feasibility
-**Status**: pending
+**Status**: in-progress
 **Priority**: medium
-**Description**: Architect reviews requirements and assesses technical feasibility of proposed scope — to begin in Elaboration iteration
+**Description**: Architecture baseline, domain model, regulation engine approach, tech stack decisions for MVP scope
+**Iteration**: 1 (elaboration)
+**Branch**: elaboration/T-004
+**Team**: openup-elaboration-team-1 (architect + developer)
 
 ## T-005: Document Risks and Mitigations
 **Status**: completed
@@ -28,11 +31,16 @@
 ## T-006: Create Initial Project Plan
 **Status**: pending
 **Priority**: medium
-**Description**: Build project plan with work items, estimates, and schedule — to begin in Elaboration iteration
+**Description**: Build project plan with work items, estimates, and schedule — to begin after T-004 completes
 
-## Inception Summary
+## Inception Summary (Iteration 0)
 - Vision document: complete (docs/vision.md)
 - Risk list: 8 risks identified, 2 critical (docs/risk-list.md)
 - Use cases: 20 catalogued, 2 detailed for MVP
 - MVP scope: Flight Ops + Crew Mgmt + Dashboard + Admin (6 P0 use cases)
-- **Recommendation**: Move to Elaboration phase with iteration focused on architecture and MVP design
+
+## Elaboration Summary (Iteration 1 — In Progress)
+- Task: T-004 Technical Feasibility Assessment
+- Team deployed: architect + developer (openup-elaboration-team-1)
+- Branch: elaboration/T-004
+- Focus: System architecture, domain model, regulation engine, tech stack, GDS integration spike
