@@ -7,7 +7,7 @@
 **Status**: in-progress
 **Current Task**: T-007 — Construction Sprint 0: Foundation Scaffolding
 **Started**: 2026-06-11
-**Last Updated**: 2026-06-11
+**Last Updated**: 2026-06-12
 **Updated By**: openup-start-iteration
 
 ## Completed Work Items (Iteration 0 — Inception)
@@ -29,7 +29,18 @@
 | T-006 | Create Initial Project Plan | [#1](https://github.com/GermanDZ/airline-mgmt-qwen/pull/1) |
 
 ## Completed Work Items (Iteration 3 — Construction Sprint 0)
-*(In progress — developer building all foundation scaffolding)*
+**Status**: completed ✅
+**Commit**: `3d3b871` (56 files, +3909/-13 lines)
+| Subtask | Description | Status |
+|---|---|---|
+| S0-T01 | Project scaffolding (FastAPI modules) | ✅ |
+| S0-T02 | Database schema & migration (SQLAlchemy 2.0 + Alembic) | ✅ |
+| S0-T03 | Auth service skeleton (JWT + bcrypt + RBAC models) | ✅ |
+| S0-T04 | API contract definition (OpenAPI spec) | ✅ |
+| S0-T05 | Audit logging (hash-chained log table + verify function) | ✅ |
+| S0-T06 | React frontend scaffolding (Vite + TypeScript) | ✅ |
+| S0-T07 | CI pipeline (GitHub Actions + Docker builds) | ✅ |
+
 
 | Subtask | Description | Status |
 |---|---|---|

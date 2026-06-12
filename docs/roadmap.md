@@ -55,8 +55,16 @@
 - Key dependency: SME engagement required before Sprint 2 (regulation engine)
 
 ## T-007: Construction Sprint 0 — Foundation Scaffolding
-**Status**: in-progress
+**Status**: completed
 **Priority**: high
-**Description**: Project scaffolding: FastAPI backend + React frontend + PostgreSQL DB schema (Alembic), GitHub Actions CI/CD pipeline, authentication service skeleton (JWT + RBAC model), audit logging infrastructure, OpenAPI contract definition. Foundation for all subsequent sprints.
-**Phase**: construction, Iteration 3
-**Team**: openup-construction-team-t007 (developer + tester)
+**Description**: Full project scaffolding committed: FastAPI backend, React frontend, Alembic migrations, auth service (JWT + RBAC models), audit logging with hash chain, OpenAPI contract, CI/CD pipeline, Docker setup. 56 files, ~2500 lines.
+**Iteration**: 3 (construction)
+**Commits**: `3d3b871`
+
+## T-008: Construction Sprint 1 — Access Control & Flight Ops Core
+**Status**: pending
+**Priority**: high
+**Description**: Implement UC-AD-01 (RBAC: User/Role/Permission CRUD + auth middleware), flight entity domain model & repository, crew entity domain model & repository, flight plan form frontend (UC-FO-01). ~52 story points across 4 subtasks.
+**Plan**: See docs/changes/T-006/plan.md Sprint 1 section
+
+## Inception Summary (Iteration 0)
