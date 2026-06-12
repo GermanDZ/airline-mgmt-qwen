@@ -49,7 +49,14 @@
 - Tech stack confirmed: Python/FastAPI + React/TS + PostgreSQL + Redis + AWS ECS
 - Risks assessed: R1 (FEASIBLE with SME), R2 (MANAGEABLE)
 
-## Planning Summary (Iteration 2 — In Progress)
-- Task: T-006 Initial Project Plan
-- Deliverable: Comprehensive construction plan with 5 sprints, ~126 story points, 14-week timeline
+## Planning Summary (Iteration 2 — Completed)
+- Task: T-006 Initial Project Plan — completed
+- Deliverable: Construction plan with 5 sprints, ~126 story points, 14-week timeline
 - Key dependency: SME engagement required before Sprint 2 (regulation engine)
+
+## T-007: Construction Sprint 0 — Foundation Scaffolding
+**Status**: in-progress
+**Priority**: high
+**Description**: Project scaffolding: FastAPI backend + React frontend + PostgreSQL DB schema (Alembic), GitHub Actions CI/CD pipeline, authentication service skeleton (JWT + RBAC model), audit logging infrastructure, OpenAPI contract definition. Foundation for all subsequent sprints.
+**Phase**: construction, Iteration 3
+**Team**: openup-construction-team-t007 (developer + tester)

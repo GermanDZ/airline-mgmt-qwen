@@ -41,3 +41,22 @@ docs/agent-logs/
 # Temporary files
 *.tmp
 temp/
+
+# Environment / secrets (override project defaults)
+.env
+.env.local
+
+# Backend virtualenv
+backend/venv/
+backend/.venv/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Docker
+.docker/
+Dockerfile.*.cache/
+
+# IDE (project-level)
+*.code-workspace

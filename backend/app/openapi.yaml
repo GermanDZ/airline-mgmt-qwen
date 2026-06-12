@@ -1,0 +1,653 @@
+# Airline Management System — API Contract (Planned Endpoints)
+# This document defines the intended API surface. Routes are stubs until
+# implementation in subsequent sprints. Auto-generated from FastAPI routes
+# is available at /openapi.json when the server runs.
+
+openapi: "3.1.0"
+info:
+  title: "Airline Management System API"
+  description: |
+    Cloud-hosted platform for unified airline operations management.
+    Covers flight operations, crew management, and dashboard & reporting.
+  version: "0.1.0"
+  contact:
+    name: "AMS Engineering"
+
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+  - url: https://api.ams.example.com
+    description: Production
+
+# ============================================================================
+# Auth (Sprint 1 — S1-T01)
+# ============================================================================
+
+paths:
+  /api/v1/auth/login:
+    post:
+      summary: "Authenticate and receive JWT tokens"
+      tags: [auth]
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: Tokens issued
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+
+  /api/v1/auth/refresh:
+    post:
+      summary: "Refresh access token using refresh token"
+      tags: [auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RefreshTokenRequest"
+      responses:
+        "200":
+          description: New access token issued
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+
+  /api/v1/auth/logout:
+    post:
+      summary: "Revoke refresh token (rotation)"
+      tags: [auth]
+      security: [{ BearerAuth: [] }]
+      responses:
+        "204":
+          description: Token revoked
+
+  # --- Users & RBAC ---
+
+  /api/v1/users:
+    get:
+      summary: "List users (paginated)"
+      tags: [users, rbac]
+      security: [{ BearerAuth: [] }]
+      parameters:
+        - name: page
+          in: query
+          schema: { type: integer, default: 1 }
+        - name: page_size
+          in: query
+          schema: { type: integer, default: 20, maximum: 100 }
+      responses:
+        "200":
+          description: User list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedUsers"
+
+    post:
+      summary: "Create a new user"
+      tags: [users, rbac]
+      security: [{ BearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserRequest"
+      responses:
+        "201":
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+
+  /api/v1/users/{user_id}:
+    get:
+      summary: "Get user by ID"
+      tags: [users, rbac]
+      security: [{ BearerAuth: [] }]
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+
+    patch:
+      summary: "Update user"
+      tags: [users, rbac]
+      security: [{ BearerAuth: [] }]
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserRequest"
+      responses:
+        "200":
+          description: User updated
+
+    delete:
+      summary: "Deactivate user"
+      tags: [users, rbac]
+      security: [{ BearerAuth: [] }]
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "204":
+          description: User deactivated
+
+  /api/v1/users/{user_id}/roles:
+    put:
+      summary: "Assign roles to user"
+      tags: [users, rbac]
+      security: [{ BearerAuth: [] }]
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssignRolesRequest"
+      responses:
+        "200":
+          description: Roles assigned
+
+  /api/v1/roles:
+    get:
+      summary: "List all roles"
+      tags: [rbac]
+      security: [{ BearerAuth: [] }]
+      responses:
+        "200":
+          description: Role list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/RoleResponse"
+
+    post:
+      summary: "Create a new role"
+      tags: [rbac]
+      security: [{ BearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateRoleRequest"
+      responses:
+        "201":
+          description: Role created
+
+  /api/v1/roles/{role_id}:
+    get:
+      summary: "Get role by ID"
+      tags: [rbac]
+      security: [{ BearerAuth: [] }]
+      parameters:
+        - name: role_id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Role details
+
+    patch:
+      summary: "Update role"
+      tags: [rbac]
+      security: [{ BearerAuth: [] }]
+      parameters:
+        - name: role_id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateRoleRequest"
+      responses:
+        "200":
+          description: Role updated
+
+    delete:
+      summary: "Delete role"
+      tags: [rbac]
+      security: [{ BearerAuth: [] }]
+      parameters:
+        - name: role_id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "204":
+          description: Role deleted
+
+  # --- Flight Operations (Sprint 1-2) ---
+
+  /api/v1/flight-plans:
+    get:
+      summary: "List flight plans"
+      tags: [flight-ops]
+      security: [{ BearerAuth: [] }]
+      parameters:
+        - name: page
+          in: query
+          schema: { type: integer, default: 1 }
+        - name: date_from
+          in: query
+          schema: { type: string, format: date, nullable: true }
+        - name: date_to
+          in: query
+          schema: { type: string, format: date, nullable: true }
+      responses:
+        "200":
+          description: Flight plan list
+
+    post:
+      summary: "Create a flight plan"
+      tags: [flight-ops]
+      security: [{ BearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateFlightPlanRequest"
+      responses:
+        "201":
+          description: Flight plan created
+
+  /api/v1/flight-plans/{flight_plan_id}:
+    get:
+      summary: "Get flight plan by ID"
+      tags: [flight-ops]
+      security: [{ BearerAuth: [] }]
+      parameters:
+        - name: flight_plan_id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Flight plan details
+
+    patch:
+      summary: "Update flight plan"
+      tags: [flight-ops]
+      security: [{ BearerAuth: [] }]
+      parameters:
+        - name: flight_plan_id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Flight plan updated
+
+  /api/v1/flight-plans/{flight_plan_id}/file:
+    post:
+      summary: "File a flight plan"
+      tags: [flight-ops]
+      security: [{ BearerAuth: [] }]
+      parameters:
+        - name: flight_plan_id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Flight plan filed
+
+  /api/v1/flight-plans/{flight_plan_id}/status:
+    get:
+      summary: "Get flight plan status"
+      tags: [flight-ops]
+      security: [{ BearerAuth: [] }]
+      parameters:
+        - name: flight_plan_id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Current status
+
+  # --- Crew Management (Sprint 2) ---
+
+  /api/v1/crew-assignments:
+    get:
+      summary: "List crew assignments"
+      tags: [crew-mgmt]
+      security: [{ BearerAuth: [] }]
+      parameters:
+        - name: date_from
+          in: query
+          schema: { type: string, format: date }
+        - name: date_to
+          in: query
+          schema: { type: string, format: date }
+      responses:
+        "200":
+          description: Crew assignments
+
+    post:
+      summary: "Generate crew roster"
+      tags: [crew-mgmt]
+      security: [{ BearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateRosterRequest"
+      responses:
+        "201":
+          description: Roster generated
+
+  # --- Dashboard (Sprint 3) ---
+
+  /api/v1/dashboard:
+    get:
+      summary: "Operations dashboard data"
+      tags: [dashboard]
+      security: [{ BearerAuth: [] }]
+      responses:
+        "200":
+          description: Aggregated dashboard data
+
+  /api/v1/dashboard/flight-stream:
+    get:
+      summary: "SSE stream of flight statuses"
+      tags: [dashboard, real-time]
+      security: [{ BearerAuth: [] }]
+      responses:
+        "200":
+          description: Server-Sent Events stream
+
+  # --- Audit Log (read-only, for compliance) ---
+
+  /api/v1/audit-logs:
+    get:
+      summary: "Query audit log entries"
+      tags: [audit]
+      security: [{ BearerAuth: [] }]
+      parameters:
+        - name: event_type
+          in: query
+          schema: { type: string, nullable: true }
+        - name: entity_type
+          in: query
+          schema: { type: string, nullable: true }
+        - name: user_id
+          in: query
+          schema: { type: integer, nullable: true }
+        - name: from
+          in: query
+          schema: { type: string, format: date-time, nullable: true }
+        - name: to
+          in: query
+          schema: { type: string, format: date-time, nullable: true }
+      responses:
+        "200":
+          description: Audit log entries (paginated)
+
+  /api/v1/audit-logs/verify-chain:
+    get:
+      summary: "Verify audit log chain integrity"
+      tags: [audit]
+      security: [{ BearerAuth: [] }]
+      responses:
+        "200":
+          description: Chain verification result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChainVerificationResponse"
+
+  # --- Health ---
+
+  /health:
+    get:
+      summary: "Health check"
+      tags: [system]
+      responses:
+        "200":
+          description: Service healthy
+
+
+# ============================================================================
+# Components
+# ============================================================================
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    LoginRequest:
+      type: object
+      required: [username, password]
+      properties:
+        username:
+          type: string
+          description: Username or email
+        password:
+          type: string
+          format: password
+
+    RefreshTokenRequest:
+      type: object
+      required: [refresh_token]
+      properties:
+        refresh_token:
+          type: string
+
+    AuthResponse:
+      type: object
+      required: [access_token, refresh_token, token_type, expires_in]
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        token_type:
+          type: string
+          enum: [bearer]
+        expires_in:
+          type: integer
+          description: Access token expiry in seconds
+
+    CreateUserRequest:
+      type: object
+      required: [username, email, password]
+      properties:
+        username:
+          type: string
+          maxLength: 50
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+          minLength: 8
+        is_superuser:
+          type: boolean
+          default: false
+
+    UpdateUserRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          maxLength: 50
+        email:
+          type: string
+          format: email
+        is_active:
+          type: boolean
+        password:
+          type: string
+          format: password
+
+    UserResponse:
+      type: object
+      required: [id, username, email, is_active, is_superuser]
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        email:
+          type: string
+        is_active:
+          type: boolean
+        is_superuser:
+          type: boolean
+        roles:
+          type: array
+          items:
+            $ref: "#/components/schemas/RoleResponse"
+
+    PaginatedUsers:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserResponse"
+        total:
+          type: integer
+        page:
+          type: integer
+        page_size:
+          type: integer
+
+    AssignRolesRequest:
+      type: object
+      required: [role_ids]
+      properties:
+        role_ids:
+          type: array
+          items:
+            type: integer
+
+    RoleResponse:
+      type: object
+      required: [id, name]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+
+    CreateRoleRequest:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          maxLength: 50
+        description:
+          type: string
+
+    UpdateRoleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 50
+        description:
+          type: string
+
+    CreateFlightPlanRequest:
+      type: object
+      required: [flight_number, departure_icao, arrival_icao, departure_time]
+      properties:
+        flight_number:
+          type: string
+          maxLength: 10
+        departure_icao:
+          type: string
+          description: ICAO code of departure aerodrome
+        arrival_icao:
+          type: string
+          description: ICAO code of arrival aerodrome
+        departure_time:
+          type: string
+          format: date-time
+        aircraft_registration:
+          type: string
+        route_id:
+          type: integer
+        remarks:
+          type: string
+
+    GenerateRosterRequest:
+      type: object
+      required: [date_from, date_to]
+      properties:
+        date_from:
+          type: string
+          format: date
+        date_to:
+          type: string
+          format: date
+        crew_member_id:
+          type: integer
+          description: Optional filter for specific crew member
+
+    ChainVerificationResponse:
+      type: object
+      required: [is_valid, entry_count]
+      properties:
+        is_valid:
+          type: boolean
+        entry_count:
+          type: integer
+        last_verified_at:
+          type: string
+          format: date-time
+        chain_break_at:
+          type: integer
+          description: ID of first broken link (if any)
+
+security:
+  - BearerAuth: []

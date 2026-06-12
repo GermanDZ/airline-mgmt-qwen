@@ -1,0 +1,38 @@
+# Airline Management System — Backend Dockerfile (multi-stage)
+#
+# Usage:
+#   docker build -t airline-mgmt-backend -f backend/Dockerfile.backend backend/
+#   docker run -p 8000:8000 --env-file .env airline-mgmt-backend
+
+FROM python:3.12-slim AS base
+
+WORKDIR /app
+
+# Install system deps needed by asyncpg, bcrypt
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc libpq-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+# ---------------------------------------------------------------------------
+# Dependencies stage (cached unless requirements change)
+# ---------------------------------------------------------------------------
+FROM base AS deps
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# ---------------------------------------------------------------------------
+# Development stage
+# ---------------------------------------------------------------------------
+FROM deps AS development
+COPY . .
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+# ---------------------------------------------------------------------------
+# Production stage
+# ---------------------------------------------------------------------------
+FROM deps AS production
+COPY app/ ./app/
+ENV PYTHONUNBUFFERED=1
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
